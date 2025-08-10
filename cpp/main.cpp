@@ -46,7 +46,7 @@ class KakaoAPI {
 public:
 	std::string go() {
 		// (생략)API 호출 후 반환 소스코드...
-		return "naver data...";
+		return "kakao data...";
 	}
 };
 
@@ -108,7 +108,7 @@ int main() {
 	cout << "2. Yahoo\n";
 	cout << "3. Google\n";
 	cout << "4. Naver\n";
-	cout << "5. Kakako\n";
+	cout << "5. Kakao\n";
 
 	cout << "================\n입력 : ";
 	int input1;
@@ -220,7 +220,7 @@ int main() {
 
 	
 	else if (hangle == 1 && input == 2) {
-		result2 = model.inference("Gemini", db1 + " " + line);
+		result2 = model.inference("Llama", db1 + " " + line);
 	}
 	else {
 		std::cout << "ERROR :: 유효하지 않은 입력입니다.\n";
