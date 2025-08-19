@@ -12,14 +12,6 @@ class GoogleAPI:
     def api(self):
         return "google data..."
 
-class NaverAPI:
-    def runAPI(self):
-        return "naver data..."
-
-class KakaoAPI:
-    def go(self):
-        return "kakao data..."
-
 class DBConnector:
     def dbInit(self):
         pass
@@ -58,8 +50,6 @@ def main():
     print("1. Lycos")
     print("2. Yahoo")
     print("3. Google")
-    print("4. Naver")
-    print("5. Kakao")
     print("================\n입력 : ", end="")
     try:
         input1 = int(input().strip())
@@ -73,10 +63,6 @@ def main():
         price += 1000
     elif input1 == 3:
         price += 300
-    elif input1 == 4:
-        price += 200
-    elif input1 == 5:
-        price += 100
 
     # 1. 크롤링 엔진
     t1 = LycosCralwer()
@@ -84,14 +70,10 @@ def main():
 
     # 2. API 엔진
     t3 = GoogleAPI()
-    t4 = NaverAPI()
-    t5 = KakaoAPI()
 
     r1 = t1.run()
     r2 = t2.run()
     r3 = t3.api()
-    r4 = t4.runAPI()
-    r5 = t5.go()
 
     result = ""
     if input1 == 1:
@@ -100,10 +82,6 @@ def main():
         result = r2
     elif input1 == 3:
         result = r3
-    elif input1 == 4:
-        result = r4
-    elif input1 == 5:
-        result = r5
 
     db = DBConnector()
     db.dbInit()
@@ -114,10 +92,6 @@ def main():
         db.saveQuery("Yahoo", r2)
     elif input1 == 3:
         db.saveQuery("Google", r3)
-    elif input1 == 4:
-        db.saveQuery("Naver", r4)
-    elif input1 == 5:
-        db.saveQuery("Kakao", r5)
 
     db.dbDisconnect()
 
@@ -125,12 +99,9 @@ def main():
     if hangle == 0:
         print("1. GPT")
         print("2. Gemini")
-        print("3. Claude")
-        print("4. DeepSeek")
-        print("5. Llama")
+        print("3. Llama")
     else:
-        print("1. DeepSeek")
-        print("2. Llama")
+        print("1. Llama")
     print("================\n입력 : ", end="")
     try:
         input_model = int(input().strip())
@@ -141,12 +112,9 @@ def main():
     if hangle == 0:
         if input_model == 1: price += 500
         if input_model == 2: price += 400
-        if input_model == 3: price += 300
-        if input_model == 4: price += 100
-        if input_model == 5: price += 100
+        if input_model == 3: price += 100
     else:
         if input_model == 1: price += 100
-        if input_model == 2: price += 100
 
     model = Inferencer()
 
@@ -159,20 +127,14 @@ def main():
     elif hangle == 0 and input_model == 2:
         result2 = model.inference("Gemini", db1 + " " + line)
     elif hangle == 0 and input_model == 3:
-        result2 = model.inference("Claude", db1 + " " + line)
-    elif hangle == 0 and input_model == 4:
-        result2 = model.inference("DeepSeek", db1 + " " + line)
-    elif hangle == 0 and input_model == 5:
         result2 = model.inference("Llama", db1 + " " + line)
     elif hangle == 1 and input_model == 1:
-        result2 = model.inference("DeepSeek", db1 + " " + line)
-    elif hangle == 1 and input_model == 2:
         result2 = model.inference("Llama", db1 + " " + line)
     else:
         print("ERROR :: 유효하지 않은 입력입니다.")
         return
 
-    if input1 < 1 or input1 > 5:
+    if input1 < 1 or input1 > 3:
         print("ERROR :: 존재하지 않는 검색엔진입니다.")
 
     print("추론결과\n==============================")
