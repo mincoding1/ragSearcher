@@ -125,7 +125,7 @@ def main():
     if hangle == 0:
         print("1. GPT")
         print("2. Gemini")
-        print("3. Clade")
+        print("3. Claude")
         print("4. DeepSeek")
         print("5. Llama")
     else:
@@ -159,7 +159,7 @@ def main():
     elif hangle == 0 and input_model == 2:
         result2 = model.inference("Gemini", db1 + " " + line)
     elif hangle == 0 and input_model == 3:
-        result2 = model.inference("Clade", db1 + " " + line)
+        result2 = model.inference("Claude", db1 + " " + line)
     elif hangle == 0 and input_model == 4:
         result2 = model.inference("DeepSeek", db1 + " " + line)
     elif hangle == 0 and input_model == 5:
