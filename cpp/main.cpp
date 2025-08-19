@@ -34,22 +34,6 @@ public:
 	}
 };
 
-class NaverAPI {
-public:
-	std::string runAPI() {
-		// (생략)API 호출 후 반환 소스코드...
-		return "naver data...";
-	}
-};
-
-class KakaoAPI {
-public:
-	std::string go() {
-		// (생략)API 호출 후 반환 소스코드...
-		return "kakao data...";
-	}
-};
-
 class DBConnector {
 public:
 	void dbInit() {
@@ -59,7 +43,7 @@ public:
 	void saveQuery(string site, string data) {
 		// (생략)db에 문자열 저장...
 	}
-	
+
 	string loadQuery(string context) {
 		// (생략)db에 관련 문자열 가져오기
 		return "result";
@@ -79,7 +63,7 @@ public:
 };
 
 int main() {
-	
+
 	cout << "무엇이든지 물어보세요 : ";
 	char buf[256];
 	cin.getline(buf, 255);
@@ -107,8 +91,6 @@ int main() {
 	cout << "1. Lycos\n";
 	cout << "2. Yahoo\n";
 	cout << "3. Google\n";
-	cout << "4. Naver\n";
-	cout << "5. Kakao\n";
 
 	cout << "================\n입력 : ";
 	int input1;
@@ -118,8 +100,6 @@ int main() {
 	if (input1 == 1) price += 1000;
 	else if (input1 == 2) price += 1000;
 	else if (input1 == 3) price += 300;
-	else if (input1 == 4) price += 200;
-	else if (input1 == 5) price += 100;
 
 	//1. 크롤링 해야하는 검색엔진
 	LycosCralwer t1;
@@ -127,21 +107,15 @@ int main() {
 
 	//2. 검색엔진 API
 	GoogleAPI t3;
-	NaverAPI t4;
-	KakaoAPI t5;
 
 	string r1 = t1.run();
 	string r2 = t2.run();
 	string r3 = t3.api();
-	string r4 = t4.runAPI();
-	string r5 = t5.go();
 
 	string result = "";
 	if (input1 == 1) result = r1;
 	else if (input1 == 2) result = r2;
 	else if (input1 == 3) result = r3;
-	else if (input1 == 4) result = r4;
-	else if (input1 == 5) result = r5;
 
 	DBConnector db;
 
@@ -150,8 +124,6 @@ int main() {
 	if (input1 == 1) db.saveQuery("Lycos", r1);
 	else if (input1 == 2) db.saveQuery("Yahoo", r2);
 	else if (input1 == 3) db.saveQuery("Google", r3);
-	else if (input1 == 4) db.saveQuery("Naver", r4);
-	else if (input1 == 5) db.saveQuery("Kakao", r5);
 
 	db.dbDisconnect();
 
@@ -160,13 +132,10 @@ int main() {
 	if (hangle == 0) {
 		cout << "1. GPT\n";
 		cout << "2. Gemini\n";
-		cout << "3. Claude\n";
-		cout << "4. DeepSeek\n";
-		cout << "5. Llama\n";
+		cout << "3. Llama\n";
 	}
 	else {
-		cout << "1. DeepSeek\n";
-		cout << "2. Llama\n";
+		cout << "1. Llama\n";
 	}
 	cout << "================\n입력 : ";
 
@@ -176,13 +145,10 @@ int main() {
 	if (hangle == 0) {
 		if (input == 1) price += 500;
 		if (input == 2) price += 400;
-		if (input == 3) price += 300;
-		if (input == 4) price += 100;
-		if (input == 5) price += 100;
+		if (input == 3) price += 100;
 	}
 	else {
 		if (input == 1) price += 100;
-		if (input == 2) price += 100;
 	}
 
 	Inferencer model;
@@ -198,28 +164,13 @@ int main() {
 	else if (hangle == 0 && input == 2) {
 		result2 = model.inference("Gemini", db1 + " " + line);
 	}
-	
+
 	else if (hangle == 0 && input == 3) {
-		result2 = model.inference("Claude", db1 + " " + line);
-	}
-
-	
-	else if (hangle == 0 && input == 4) {
-		result2 = model.inference("DeepSeek", db1 + " " + line);
-	}
-
-	
-	else if (hangle == 0 && input == 5) {
 		result2 = model.inference("Llama", db1 + " " + line);
 	}
 
-	
-	else if (hangle == 1 && input == 1) {
-		result2 = model.inference("DeepSeek", db1 + " " + line);
-	}
 
-	
-	else if (hangle == 1 && input == 2) {
+	else if (hangle == 1 && input == 1) {
 		result2 = model.inference("Llama", db1 + " " + line);
 	}
 	else {
@@ -227,7 +178,7 @@ int main() {
 		return 0;
 	}
 
-	if (input1 < 1 || input1 > 5) {
+	if (input1 < 1 || input1 > 3) {
 		std::cout << "ERROR :: 존재하지 않는 검색엔진입니다.\n";
 	}
 
