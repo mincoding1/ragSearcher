@@ -118,7 +118,7 @@ public class Main {
         if (hangle == 0) {
             System.out.println("1. GPT");
             System.out.println("2. Gemini");
-            System.out.println("3. Clade");
+            System.out.println("3. Claude");
             System.out.println("4. DeepSeek");
             System.out.println("5. Llama");
         } else {
@@ -152,7 +152,7 @@ public class Main {
         } else if (hangle == 0 && input == 2) {
             result2 = model.inference("Gemini", db1 + " " + line);
         } else if (hangle == 0 && input == 3) {
-            result2 = model.inference("Clade", db1 + " " + line);
+            result2 = model.inference("Claude", db1 + " " + line);
         } else if (hangle == 0 && input == 4) {
             result2 = model.inference("DeepSeek", db1 + " " + line);
         } else if (hangle == 0 && input == 5) {
