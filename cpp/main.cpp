@@ -160,7 +160,7 @@ int main() {
 	if (hangle == 0) {
 		cout << "1. GPT\n";
 		cout << "2. Gemini\n";
-		cout << "3. claude\n";
+		cout << "3. Claude\n";
 		cout << "4. DeepSeek\n";
 		cout << "5. Llama\n";
 	}
@@ -200,7 +200,7 @@ int main() {
 	}
 	
 	else if (hangle == 0 && input == 3) {
-		result2 = model.inference("claude", db1 + " " + line);
+		result2 = model.inference("Claude", db1 + " " + line);
 	}
 
 	
